@@ -1,1 +1,24 @@
-<p>button works!</p>
+<div class="type">
+  <h2>按钮类型</h2>
+  <button nz-button nzType="primary" (click)="clickEvent()">Primary</button>
+  <button nz-button nzType="default">Default</button>
+  <button nz-button nzType="dashed">Dashed</button>
+  <button nz-button nzType="danger">Danger</button>
+  <button nz-button nzType="link">Link</button>
+</div>
+
+<div class="icon">
+  <h2>带图标的按钮</h2>
+  <button nz-button nzType="primary" nzShape="circle"><i nz-icon nzType="search"></i></button>
+  <button nz-button nzType="primary"><i nz-icon nzType="search"></i>Search</button>
+  <button nz-button nzType="dashed" nzShape="circle" nzSize="small"><i nz-icon nzType="search"></i></button>
+  <button nz-button nzType="dashed" nzSize="small"><i nz-icon nzType="search"></i>Search</button>
+</div>
+
+<div class="group">
+  <h2>按钮组合</h2>
+  <nz-button-group>
+    <button nz-button nzType="primary"><i nz-icon nzType="left"></i> Go back</button>
+    <button nz-button nzType="primary">Go forward<i nz-icon nzType="right"></i></button>
+  </nz-button-group>
+</div>
