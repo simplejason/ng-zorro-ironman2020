@@ -7,6 +7,24 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentsComponent implements OnInit {
+  collapsed = false;
+  theme = 'light';
+  menus = [
+    {
+      level: 1,
+      title: 'Components',
+      icon: 'home',
+      open: true,
+      children: [
+        {
+          level: 2,
+          title: 'Button',
+          path: ['/components', 'button'],
+          icon: 'tag'
+        }
+      ]
+    }
+  ];
 
   constructor() { }
 

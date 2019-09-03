@@ -1,0 +1,41 @@
+:host {
+  height: 100%;
+  display: block;
+}
+
+nz-layout {
+  height: 100%;
+
+  nz-sider {
+    padding-bottom: 48px;
+    overflow-x: hidden;
+
+    ::ng-deep {
+      ::-webkit-scrollbar {
+        width: 0;
+      }
+
+      ::-webkit-scrollbar:horizontal {
+        height: 0;
+      }
+
+      .ant-layout-sider-children {
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.logo {
+  text-align: center;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  background-image: url('../../assets/images/logo.svg');
+  background-size: 36px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 64px;
+  flex-shrink: 0;
+}
