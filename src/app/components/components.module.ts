@@ -4,10 +4,12 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
 import { ComponentsRoutingModule } from './components.routing.module';
+import { LayoutComponent } from './layout/layout.component';
 
 const COMPONENTS = [
   ComponentsComponent,
-  ButtonComponent
+  ButtonComponent,
+  LayoutComponent
 ];
 
 @NgModule({
