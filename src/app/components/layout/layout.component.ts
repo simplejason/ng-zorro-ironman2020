@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IMenu } from 'interfaces';
 
 @Component({
   selector: 'app-layout',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.less']
 })
 export class LayoutComponent {
-  isCollapsed = false;
+  @Input() theme: 'light' | 'dark' = 'dark';
+  @Input() collapsed = false;
+  @Input() menus: IMenu[] = [];
+  @Input() width = 200;
 }
