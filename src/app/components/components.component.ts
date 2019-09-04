@@ -8,7 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ComponentsComponent implements OnInit {
   collapsed = false;
-  theme = 'light';
+  theme = 'dark';
   menus = [
     {
       level: 1,
@@ -20,12 +20,6 @@ export class ComponentsComponent implements OnInit {
           level: 2,
           title: 'Button',
           path: ['/components', 'button'],
-          icon: 'tag'
-        },
-        {
-          level: 2,
-          title: 'Layout',
-          path: ['/components', 'layout'],
           icon: 'tag'
         }
       ]
