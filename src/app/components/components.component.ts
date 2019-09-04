@@ -21,6 +21,12 @@ export class ComponentsComponent implements OnInit {
           title: 'Button',
           path: ['/components', 'button'],
           icon: 'tag'
+        },
+        {
+          level: 2,
+          title: 'Layout',
+          path: ['/components', 'layout'],
+          icon: 'tag'
         }
       ]
     }
