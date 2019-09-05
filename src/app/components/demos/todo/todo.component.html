@@ -1,1 +1,46 @@
-<p>todo works!</p>
+<div class="date-container">
+  <span class="today">今天</span>
+  <span class="today-time">
+    {{today | date: 'EE MMMM d'}}
+  </span>
+  <div class="add-task">
+    <span class="add-task-btn">
+      <i nz-icon nzType="plus" nzTheme="outline"></i>新增任務
+    </span>
+  </div>
+</div>
+
+<div class="task-container">
+  <div class="task-todo">
+    <nz-table [nzData]="listOfTodoTasks" [nzNoResult]="noResultTpl" [nzFrontPagination]="false" [nzShowPagination]="false" [nzWidthConfig]="tableWidthConfig">
+      <tbody>
+        <tr *ngFor="let task of listOfTodoTasks">
+          <td
+            nzShowCheckbox
+            (nzCheckedChange)="checkTask(task)"
+          ></td>
+          <td>{{task.name}}</td>
+          <td>
+            <i class="more-actions" nz-icon nzType="ellipsis" nz-dropdown [nzDropdownMenu]="actions" nzPlacement="bottomRight" nzTrigger="click"></i>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<nz-dropdown-menu #actions="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item>
+      <i nz-icon nzType="edit" nzTheme="outline"></i> 編輯任務
+    </li>
+    <li nz-menu-divider></li>
+    <li nz-menu-item>
+      <i nz-icon nzType="delete" nzTheme="outline"></i> 刪除任務
+    </li>
+  </ul>
+</nz-dropdown-menu>
+
+<ng-template #noResultTpl>
+  <nz-empty nzNotFoundContent="恭喜你完成了所有待辦任務！"></nz-empty>
+</ng-template>
