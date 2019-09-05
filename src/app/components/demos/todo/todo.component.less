@@ -1,0 +1,46 @@
+@import "theme";
+
+.date-container {
+  .today {
+    font-size: 24px;
+  }
+
+  .today-time {
+    position: relative;
+    left: 10px;
+    color: @text-color;
+    opacity: 0.8;
+  }
+
+  .add-task {
+    margin-top: 12px;
+
+    .add-task-btn {
+      cursor: pointer;
+
+      &:hover {
+        color: @orange-6;
+      }
+
+      [nz-icon] {
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+.task-container {
+  padding: 18px 24px 24px 24px;
+  position: relative;
+  top: 24px;
+
+  .task-todo {
+    i.more-actions {
+      font-size: 18px;
+    }
+  }
+}
+
+[nz-icon] {
+  cursor: pointer;
+}

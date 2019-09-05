@@ -32,7 +32,7 @@ export class ComponentsComponent implements OnInit {
       children: [
         {
           level: 2,
-          title: 'TODO',
+          title: '待辦事項',
           path : [ '/components', 'demos', 'todo' ],
           icon : 'edit'
         }
