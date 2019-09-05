@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-components',
-  templateUrl: './components.component.html',
-  styleUrls: ['./components.component.less'],
+  selector       : 'app-components',
+  templateUrl    : './components.component.html',
+  styleUrls      : [ './components.component.less' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentsComponent implements OnInit {
@@ -11,22 +11,37 @@ export class ComponentsComponent implements OnInit {
   theme = 'dark';
   menus = [
     {
-      level: 1,
-      title: 'Components',
-      icon: 'home',
-      open: true,
+      level   : 1,
+      title   : 'Components',
+      icon    : 'home',
+      open    : false,
       children: [
         {
           level: 2,
           title: 'Button',
-          path: ['/components', 'button'],
-          icon: 'tag'
+          path : [ '/components', 'button' ],
+          icon : 'tag'
+        }
+      ]
+    },
+    {
+      level   : 1,
+      title   : 'Demos',
+      icon    : 'build',
+      open    : true,
+      children: [
+        {
+          level: 2,
+          title: 'TODO',
+          path : [ '/components', 'demos', 'todo' ],
+          icon : 'edit'
         }
       ]
     }
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
