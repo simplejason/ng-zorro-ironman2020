@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITask } from 'interfaces';
+import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector       : 'app-todo',
@@ -8,6 +11,9 @@ import { ITask } from 'interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoComponent implements OnInit {
+  showAddForm = false;
+  createForm: FormGroup;
+
   tableWidthConfig = [
     '30px',
     '600px',
@@ -31,16 +37,67 @@ export class TodoComponent implements OnInit {
     }
   ];
 
+  /**
+   * disable date before today
+   */
+  disabledDate = (current: Date): boolean => {
+    // Can not select days before today and today
+    return differenceInCalendarDays(current, this.today) < 0;
+  };
 
   /**
    * Check the task
    */
   checkTask(task: ITask): void {
     this.listOfTodoTasks = this.listOfTodoTasks.filter(v => v.id !== task.id);
-    console.log(task, 'done');
+    const successText = this.listOfTodoTasks.length ? '恭喜完成一個任務，繼續加油！' : '恭喜你完成了所有待辦任務！';
+    this.nzMessageService.success(successText);
   }
 
-  constructor() {
+  /**
+   * add task
+   */
+  addTask(): void {
+    for (const i in this.createForm.controls) {
+      this.createForm.controls[ i ].markAsDirty();
+      this.createForm.controls[ i ].updateValueAndValidity();
+    }
+    if (this.createForm.valid) {
+      const newTask = {
+        ...this.createForm.getRawValue(),
+        id: new Date().getTime()
+      };
+      this.listOfTodoTasks = this.listOfTodoTasks.concat([ newTask ]);
+      // reset after adding new task
+      this.createForm.get('name').reset();
+      this.nzMessageService.success('成功創建了一個任務，記得完成喔！');
+    }
+  }
+
+  /**
+   * toggle create form state
+   */
+  showTaskForm(isShow: boolean = false): void {
+    if (isShow) {
+      // cancel to show form
+      this.createForm.reset({
+        name    : null,
+        deadline: new Date()
+      });
+    }
+    this.showAddForm = isShow;
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    private nzMessageService: NzMessageService
+  ) {
+    this.createForm = this.fb.group({
+      name       : [ null, [ Validators.required ] ],
+      description: [ null ],
+      isDone     : [ false ],
+      deadline   : [ new Date() ]
+    });
   }
 
   ngOnInit() {

@@ -1,5 +1,11 @@
 @import "theme";
 
+:host ::ng-deep {
+  .ant-table-placeholder {
+    border: none;
+  }
+}
+
 .date-container {
   .today {
     font-size: 24px;
@@ -34,13 +40,58 @@
   position: relative;
   top: 24px;
 
-  .task-todo {
+  .task-todo, .task-done {
     i.more-actions {
       font-size: 18px;
+    }
+  }
+
+  .task-done {
+    margin-top: 64px;
+  }
+
+}
+
+.form-container {
+  .add-form {
+    margin-left: 48px;
+    padding-top: 24px;
+
+    input {
+      width: 400px;
+    }
+  }
+
+  .extra-actions {
+    position: relative;
+    top: 8px;
+
+    button {
+      background-color: @orange-6;
+      border-color: @orange-6;
+    }
+
+    a {
+      margin-left: 16px;
+      color: @text-color;
+
+      &:hover {
+        border-bottom: 1px solid @border-color-base;
+      }
     }
   }
 }
 
 [nz-icon] {
   cursor: pointer;
+}
+
+form {
+  nz-form-item {
+    margin-bottom: 0px;
+  }
+}
+
+nz-divider {
+  opacity: 0.75;
 }

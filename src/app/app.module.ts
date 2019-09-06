@@ -10,7 +10,7 @@ import { registerLocaleData } from '@angular/common';
 import zh_Hant from '@angular/common/locales/zh-Hant';
 import { AppRoutingModule } from './app.routing.module';
 
-registerLocaleData(zh_Hant);
+registerLocaleData(zh_Hant, zh_TW.locale);
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ registerLocaleData(zh_Hant);
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_TW },
-    { provide: LOCALE_ID, useValue: 'zh-Hant'}
+    { provide: LOCALE_ID, useValue: 'zh-tw'}
   ],
   bootstrap: [AppComponent]
 })
