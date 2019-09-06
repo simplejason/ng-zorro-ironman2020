@@ -1,21 +1,50 @@
 <div class="date-container">
   <span class="today">今天</span>
   <span class="today-time">
-    {{today | date: 'EE MMMM d'}}
+    <!-- I hate this format, but I don't know how to show the day with suffix -->
+    {{today | date: 'EE MMMMd日'}}
   </span>
-  <div class="add-task">
-    <span class="add-task-btn">
-      <i nz-icon nzType="plus" nzTheme="outline"></i>新增任務
-    </span>
+  <div class="form-container">
+    <div class="add-task" *ngIf="!showAddForm">
+      <span class="add-task-btn" (click)="showTaskForm(true)">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>新增任務
+      </span>
+    </div>
+
+    <div class="add-form" *ngIf="showAddForm" [formGroup]="createForm">
+      <div>
+        <form nz-form [formGroup]="createForm">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group nzCompact>
+                <input class="form-name" type="text" nz-input placeholder="例如：今天七點前更新鐵人賽文章" formControlName="name"/>
+                <nz-date-picker
+                  formControlName="deadline"
+                  nzFormat="MMMMd日 HH:mm"
+                  [nzShowTime]="{ nzFormat: 'HH:mm' }"
+                  [nzDisabledDate]="disabledDate"
+                ></nz-date-picker>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+      <div class="extra-actions">
+        <button nz-button nzType="danger" (click)="addTask()">新增任務</button>
+        <a (click)="showTaskForm(false)">取消</a>
+      </div>
+    </div>
   </div>
 </div>
-
 <div class="task-container">
   <div class="task-todo">
+    <nz-divider nzType="horizontal" [nzText]="todoTaskTpl" nzOrientation="left"></nz-divider>
     <nz-table [nzData]="listOfTodoTasks" [nzNoResult]="noResultTpl" [nzFrontPagination]="false" [nzShowPagination]="false" [nzWidthConfig]="tableWidthConfig">
       <tbody>
         <tr *ngFor="let task of listOfTodoTasks">
           <td
+            nz-tooltip
+            nzTooltipTitle="點擊完成"
             nzShowCheckbox
             (nzCheckedChange)="checkTask(task)"
           ></td>
@@ -43,4 +72,8 @@
 
 <ng-template #noResultTpl>
   <nz-empty nzNotFoundContent="恭喜你完成了所有待辦任務！"></nz-empty>
+</ng-template>
+
+<ng-template #todoTaskTpl>
+  <i nz-icon nzType="schedule" nzTheme="outline"></i> 待辦任務
 </ng-template>

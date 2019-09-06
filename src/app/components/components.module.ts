@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
@@ -20,6 +21,7 @@ const COMPONENTS = [
   ],
   imports     : [
     CommonModule,
+    ReactiveFormsModule,
     NgZorroAntdModule,
     ComponentsRoutingModule
   ]
