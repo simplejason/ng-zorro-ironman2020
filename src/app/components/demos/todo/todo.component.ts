@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITask } from 'interfaces';
-import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import { NzDrawerRef, NzDrawerService, NzMessageService } from 'ng-zorro-antd';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 
