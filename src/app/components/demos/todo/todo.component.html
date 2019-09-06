@@ -43,14 +43,12 @@
       <tbody>
         <tr *ngFor="let task of listOfTodoTasks">
           <td
-            nz-tooltip
-            nzTooltipTitle="點擊完成"
             nzShowCheckbox
             (nzCheckedChange)="checkTask(task)"
           ></td>
           <td>{{task.name}}</td>
           <td>
-            <i class="more-actions" nz-icon nzType="ellipsis" nz-dropdown [nzDropdownMenu]="actions" nzPlacement="bottomRight" nzTrigger="click"></i>
+            <i class="more-actions" nz-icon nzType="ellipsis" nz-dropdown [nzDropdownMenu]="actions" nzPlacement="bottomRight" nzTrigger="click" (click)="setActivatedTask(task)"></i>
           </td>
         </tr>
       </tbody>
@@ -60,11 +58,11 @@
 
 <nz-dropdown-menu #actions="nzDropdownMenu">
   <ul nz-menu>
-    <li nz-menu-item>
+    <li nz-menu-item (click)="showEditTask()">
       <i nz-icon nzType="edit" nzTheme="outline"></i> 編輯任務
     </li>
     <li nz-menu-divider></li>
-    <li nz-menu-item>
+    <li nz-menu-item (click)="deleteTask()">
       <i nz-icon nzType="delete" nzTheme="outline"></i> 刪除任務
     </li>
   </ul>
@@ -77,3 +75,48 @@
 <ng-template #todoTaskTpl>
   <i nz-icon nzType="schedule" nzTheme="outline"></i> 待辦任務
 </ng-template>
+
+<nz-drawer
+  [nzWidth]="400"
+  [nzVisible]="visibleDetail"
+  [nzPlacement]="'right'"
+  [nzTitle]="activatedTask?.name"
+  (nzOnClose)="cancelEdit()">
+  <form nz-form [formGroup]="createForm">
+    <nz-form-item>
+      <nz-form-label nzSpan="6">
+        名稱
+      </nz-form-label>
+      <nz-form-control nzSpan="17" nzErrorTip="請輸入任務名">
+        <input nz-input formControlName="name" placeholder="請輸入任務名"/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzSpan="6">
+        描述
+      </nz-form-label>
+      <nz-form-control nzSpan="17">
+        <input nz-input formControlName="description" placeholder="請輸入描述信息，可選填"/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzSpan="6">
+        目標時間
+      </nz-form-label>
+      <nz-form-control nzSpan="17">
+        <nz-date-picker
+          nzClassName="deadline-date-picker"
+          formControlName="deadline"
+          nzFormat="MMMMd日 HH:mm"
+          [nzShowTime]="{ nzFormat: 'HH:mm' }"
+          [nzDisabledDate]="disabledDate"
+          nzPlaceHolder="請選擇目標完成時間"
+        ></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <div class="buttons-group">
+    <button nz-button nzType="danger" (click)="editTaskData()">修改任務</button>
+    <button nz-button nzType="default" (click)="cancelEdit()">取消修改</button>
+  </div>
+</nz-drawer>

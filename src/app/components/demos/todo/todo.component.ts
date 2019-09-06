@@ -13,6 +13,8 @@ import { NzMessageService } from 'ng-zorro-antd';
 export class TodoComponent implements OnInit {
   showAddForm = false;
   createForm: FormGroup;
+  activatedTask: ITask;
+  visibleDetail = false;
 
   tableWidthConfig = [
     '30px',
@@ -86,6 +88,47 @@ export class TodoComponent implements OnInit {
       });
     }
     this.showAddForm = isShow;
+  }
+
+  /**
+   * active task to edit or delete
+   */
+  setActivatedTask(task: ITask) {
+    this.activatedTask = task;
+    console.log(task);
+  }
+
+  showEditTask() {
+    // hide add form
+    this.showTaskForm(false);
+    this.createForm.reset({
+      ...this.activatedTask
+    });
+    this.visibleDetail = true;
+  }
+
+  cancelEdit() {
+    this.visibleDetail = false;
+  }
+
+  editTaskData() {
+    this.listOfTodoTasks = this.listOfTodoTasks.map(v => {
+      if (v.id === this.activatedTask.id) {
+        v = {
+          ...this.activatedTask,
+          ...this.createForm.getRawValue()
+        };
+      }
+      return v;
+    });
+    this.cancelEdit();
+  }
+
+  /**
+   * delete a task
+   */
+  deleteTask() {
+    this.listOfTodoTasks = this.listOfTodoTasks.filter(v => v.id !== this.activatedTask.id);
   }
 
   constructor(
