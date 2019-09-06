@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITask } from 'interfaces';
 import { NzDrawerRef } from 'ng-zorro-antd';
-import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 
 @Component({
   selector       : 'app-task-detail',
@@ -14,6 +14,7 @@ export class TaskDetailComponent implements OnInit {
 
   @Input() task: ITask;
   createForm: FormGroup;
+  today = new Date();
 
   /**
    * disable date before today
