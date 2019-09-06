@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITask } from 'interfaces';
 import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzDrawerRef, NzDrawerService, NzMessageService } from 'ng-zorro-antd';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @Component({
   selector       : 'app-todo',
@@ -14,7 +15,7 @@ export class TodoComponent implements OnInit {
   showAddForm = false;
   createForm: FormGroup;
   activatedTask: ITask;
-  visibleDetail = false;
+  drawerRef: NzDrawerRef;
 
   tableWidthConfig = [
     '30px',
@@ -95,33 +96,34 @@ export class TodoComponent implements OnInit {
    */
   setActivatedTask(task: ITask) {
     this.activatedTask = task;
-    console.log(task);
   }
 
   showEditTask() {
     // hide add form
     this.showTaskForm(false);
-    this.createForm.reset({
-      ...this.activatedTask
-    });
-    this.visibleDetail = true;
-  }
 
-  cancelEdit() {
-    this.visibleDetail = false;
-  }
-
-  editTaskData() {
-    this.listOfTodoTasks = this.listOfTodoTasks.map(v => {
-      if (v.id === this.activatedTask.id) {
-        v = {
-          ...this.activatedTask,
-          ...this.createForm.getRawValue()
-        };
+    this.drawerRef = this.nzDrawerService.create({
+      nzTitle        : this.activatedTask.name,
+      nzContent      : TaskDetailComponent,
+      nzWidth        : 400,
+      nzContentParams: {
+        task: this.activatedTask
       }
-      return v;
     });
-    this.cancelEdit();
+
+    this.drawerRef.afterClose.subscribe(task => {
+      if (task) {
+        this.listOfTodoTasks = this.listOfTodoTasks.map(v => {
+          if (v.id === task.id) {
+            v = task;
+          }
+          return v;
+        });
+        this.cdr.markForCheck();
+        this.nzMessageService.success('成功更新了這個任務！');
+
+      }
+    });
   }
 
   /**
@@ -133,7 +135,9 @@ export class TodoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private nzMessageService: NzMessageService
+    private cdr: ChangeDetectorRef,
+    private nzMessageService: NzMessageService,
+    private nzDrawerService: NzDrawerService
   ) {
     this.createForm = this.fb.group({
       name       : [ null, [ Validators.required ] ],
