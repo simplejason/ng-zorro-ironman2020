@@ -2,6 +2,13 @@ import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzTableComponent } from 'ng-zorro-antd';
 
+export interface VirtualDataInterface {
+  index: number;
+  name: string;
+  age: number;
+  address: string;
+}
+
 @Component({
   selector   : 'app-table-drag-sorting',
   templateUrl: './table-drag-sorting.component.html',
