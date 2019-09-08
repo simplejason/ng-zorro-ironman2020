@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ButtonComponent } from './button/button.component';
@@ -43,6 +44,7 @@ const MODAL_COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
+    ScrollingModule,
     NgZorroAntdModule,
     ComponentsRoutingModule
   ],
