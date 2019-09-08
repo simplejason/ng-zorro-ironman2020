@@ -9,13 +9,15 @@ import { TaskDetailComponent } from './demos/todo/task-detail/task-detail.compon
 import { TaskListComponent } from './demos/todo/task-list/task-list.component';
 import { TodoComponent } from './demos/todo/todo.component';
 import { LayoutComponent } from './layout/layout.component';
+import { TableComponent } from './table/table.component';
 
 const COMPONENTS = [
   ComponentsComponent,
-  ButtonComponent,
   LayoutComponent,
   TodoComponent,
-  TaskListComponent
+  TaskListComponent,
+  ButtonComponent,
+  TableComponent
 ];
 
 const MODAL_COMPONENTS = [
