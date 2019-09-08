@@ -11,6 +11,7 @@ import { TaskDetailComponent } from './demos/todo/task-detail/task-detail.compon
 import { TaskListComponent } from './demos/todo/task-list/task-list.component';
 import { TodoComponent } from './demos/todo/todo.component';
 import { LayoutComponent } from './layout/layout.component';
+import { TableAjaxComponent } from './table/table-ajax/table-ajax.component';
 import { TableDragSortingComponent } from './table/table-drag-sorting/table-drag-sorting.component';
 import { TableHeadComponent } from './table/table-head/table-head.component';
 import { TableComponent } from './table/table.component';
@@ -26,7 +27,8 @@ const COMPONENTS = [
 
 const CHILD_COMPONENTS = [
   TableHeadComponent,
-  TableDragSortingComponent
+  TableDragSortingComponent,
+  TableAjaxComponent
 ];
 
 const MODAL_COMPONENTS = [
