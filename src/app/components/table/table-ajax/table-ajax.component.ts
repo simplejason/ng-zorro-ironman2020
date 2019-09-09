@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+@Injectable()
 export class RandomUserService {
   randomUserUrl = 'https://api.randomuser.me/';
 
