@@ -27,6 +27,12 @@ export class ComponentsComponent implements OnInit {
           title: 'Table',
           path : [ '/components', 'table' ],
           icon : 'tag'
+        },
+        {
+          level: 2,
+          title: 'Date Picker',
+          path : [ '/components', 'date-picker' ],
+          icon : 'tag'
         }
       ]
     },

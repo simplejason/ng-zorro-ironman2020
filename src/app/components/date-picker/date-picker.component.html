@@ -1,0 +1,13 @@
+<nz-divider nzText="Simple usage" nzOrientation="left"></nz-divider>
+<nz-date-picker nzFormat="yyyy-MM-dd HH:mm"></nz-date-picker>
+<nz-date-picker [(ngModel)]="today" nzFormat="dd/MM/yy HH:mm"></nz-date-picker>
+<nz-date-picker [(ngModel)]="today" nzFormat="EE MM-dd"></nz-date-picker>
+<nz-divider nzText="nzDateRender" nzOrientation="left"></nz-divider>
+<nz-date-picker [(ngModel)]="today" nzFormat="yyyy-MM-dd HH:mm" [nzDateRender]="tplRender"></nz-date-picker>
+<ng-template #tplRender let-current>
+  <div class="ant-calendar-date" [class.first-day]="current.getDate() === 1">
+    {{ current.getDate() }}
+  </div>
+</ng-template>
+<nz-divider nzText="Switch Languages" nzOrientation="left"></nz-divider>
+<button nz-button (click)="changeLanguage()">Switch language</button>

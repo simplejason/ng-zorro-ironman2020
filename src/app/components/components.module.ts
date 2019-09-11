@@ -7,6 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
 import { ComponentsRoutingModule } from './components.routing.module';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 import { TaskDetailComponent } from './demos/todo/task-detail/task-detail.component';
 import { TaskListComponent } from './demos/todo/task-list/task-list.component';
 import { TodoComponent } from './demos/todo/todo.component';
@@ -22,7 +23,8 @@ const COMPONENTS = [
   TodoComponent,
   TaskListComponent,
   ButtonComponent,
-  TableComponent
+  TableComponent,
+  DatePickerComponent
 ];
 
 const CHILD_COMPONENTS = [
