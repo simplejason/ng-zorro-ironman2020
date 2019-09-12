@@ -11,6 +11,8 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import { TaskDetailComponent } from './demos/todo/task-detail/task-detail.component';
 import { TaskListComponent } from './demos/todo/task-list/task-list.component';
 import { TodoComponent } from './demos/todo/todo.component';
+import { DrawerContentComponent } from './drawer/drawer-content/drawer-content.component';
+import { DrawerComponent } from './drawer/drawer.component';
 import { LayoutComponent } from './layout/layout.component';
 import { TableAjaxComponent } from './table/table-ajax/table-ajax.component';
 import { TableDragSortingComponent } from './table/table-drag-sorting/table-drag-sorting.component';
@@ -24,7 +26,8 @@ const COMPONENTS = [
   TaskListComponent,
   ButtonComponent,
   TableComponent,
-  DatePickerComponent
+  DatePickerComponent,
+  DrawerComponent
 ];
 
 const CHILD_COMPONENTS = [
@@ -34,7 +37,8 @@ const CHILD_COMPONENTS = [
 ];
 
 const MODAL_COMPONENTS = [
-  TaskDetailComponent
+  TaskDetailComponent,
+  DrawerContentComponent
 ];
 
 @NgModule({

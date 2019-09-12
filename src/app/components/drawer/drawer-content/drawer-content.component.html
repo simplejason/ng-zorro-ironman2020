@@ -1,0 +1,31 @@
+<form nz-form [formGroup]="createForm" (ngSubmit)="submit()">
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Name</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="please enter name" formControlName="name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Description</nz-form-label>
+        <nz-form-control>
+          <textarea nz-input placeholder="Please enter description" formControlName="description" nzAutosize></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Deadline Date</nz-form-label>
+        <nz-form-control>
+          <nz-date-picker nzPlaceHolder="Please enter deadline" formControlName="deadline"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div>
+    <button nz-button nzType="primary" (click)="submit()">Submit</button>
+  </div>
+</form>
