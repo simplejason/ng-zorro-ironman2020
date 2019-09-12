@@ -15,7 +15,7 @@ export class DrawerComponent implements OnInit {
     this.drawerRef = this.nzDrawerService.create({
       nzTitle        : 'Drawer Title',
       nzContent      : DrawerContentComponent,
-      nzWidth        : 400,
+      nzWidth        : 600,
       nzContentParams: {
         name: 'This is a param from DrawerComponent'
       }
