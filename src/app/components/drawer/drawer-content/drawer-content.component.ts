@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzDrawerRef } from 'ng-zorro-antd';
+import { NzDrawerRef, NzDrawerService } from 'ng-zorro-antd';
 
 @Component({
   selector       : 'app-drawer-content',
@@ -17,8 +17,28 @@ export class DrawerContentComponent implements OnInit {
     this.nzDrawerRef.close(this.createForm.getRawValue());
   }
 
+  openWithService() {
+    const drawerRef = this.nzDrawerService.create({
+      nzTitle        : 'Child Drawer Title',
+      nzContent      : DrawerContentComponent,
+      nzWidth        : 400,
+      nzContentParams: {
+        name: 'This is a param from child'
+      }
+    });
+
+    drawerRef.afterOpen.subscribe(() => {
+      console.log('Drawer(child Component) open');
+    });
+
+    drawerRef.afterClose.subscribe(data => {
+      console.log(data, 'child');
+    });
+  }
+
   constructor(
     private nzDrawerRef: NzDrawerRef,
+    private nzDrawerService: NzDrawerService,
     private fb: FormBuilder
   ) {
     this.createForm = this.fb.group({

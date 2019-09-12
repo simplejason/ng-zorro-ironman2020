@@ -1,4 +1,4 @@
-<form nz-form [formGroup]="createForm" (ngSubmit)="submit()">
+<form nz-form [formGroup]="createForm">
   <div nz-row nzGutter="8">
     <div nz-col nzSpan="24">
       <nz-form-item>
@@ -25,7 +25,9 @@
       </nz-form-item>
     </div>
   </div>
-  <div>
-    <button nz-button nzType="primary" (click)="submit()">Submit</button>
-  </div>
 </form>
+<div>
+  <button nz-button nzType="primary" (click)="openWithService()">Open child drawer</button>
+  <nz-divider nzType="vertical"></nz-divider>
+  <button nz-button nzType="primary" (click)="submit()">Submit</button>
+</div>
