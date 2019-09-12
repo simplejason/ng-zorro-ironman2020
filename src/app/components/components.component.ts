@@ -33,6 +33,12 @@ export class ComponentsComponent implements OnInit {
           title: 'Date Picker',
           path : [ '/components', 'date-picker' ],
           icon : 'tag'
+        },
+        {
+          level: 2,
+          title: 'Drawer',
+          path : [ '/components', 'drawer' ],
+          icon : 'tag'
         }
       ]
     },
