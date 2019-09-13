@@ -8,9 +8,6 @@ import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
 import { ComponentsRoutingModule } from './components.routing.module';
 import { DatePickerComponent } from './date-picker/date-picker.component';
-import { TaskDetailComponent } from './demos/todo/task-detail/task-detail.component';
-import { TaskListComponent } from './demos/todo/task-list/task-list.component';
-import { TodoComponent } from './demos/todo/todo.component';
 import { DrawerContentComponent } from './drawer/drawer-content/drawer-content.component';
 import { DrawerComponent } from './drawer/drawer.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -22,8 +19,6 @@ import { TableComponent } from './table/table.component';
 const COMPONENTS = [
   ComponentsComponent,
   LayoutComponent,
-  TodoComponent,
-  TaskListComponent,
   ButtonComponent,
   TableComponent,
   DatePickerComponent,
@@ -37,7 +32,6 @@ const CHILD_COMPONENTS = [
 ];
 
 const MODAL_COMPONENTS = [
-  TaskDetailComponent,
   DrawerContentComponent
 ];
 

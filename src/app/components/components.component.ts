@@ -53,6 +53,12 @@ export class ComponentsComponent implements OnInit {
           title: '待辦事項',
           path : [ '/components', 'demos', 'todo' ],
           icon : 'edit'
+        },
+        {
+          level: 2,
+          title: 'Hacker News',
+          path : [ '/components', 'demos', 'hacker-news' ],
+          icon : 'read'
         }
       ]
     }

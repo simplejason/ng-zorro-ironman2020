@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
-import { TodoComponent } from './demos/todo/todo.component';
 import { DrawerComponent } from './drawer/drawer.component';
 import { TableComponent } from './table/table.component';
 
@@ -29,21 +28,11 @@ const routes: Routes = [
         component: DrawerComponent
       },
       {
-        path    : 'demos',
-        children: [
-          {
-            path     : 'todo',
-            component: TodoComponent
-          },
-          {
-            path     : '**',
-            redirectTo: 'todo',
-            pathMatch: 'full'
-          }
-        ]
+        path        : 'demos',
+        loadChildren: () => import('./demos/demos.module').then(m => m.DemosModule)
       },
       {
-        path      : '',
+        path      : '**',
         redirectTo: 'demos',
         pathMatch : 'full'
       }
