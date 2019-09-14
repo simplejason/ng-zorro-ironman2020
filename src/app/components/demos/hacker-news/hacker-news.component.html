@@ -1,1 +1,54 @@
-<p>hacker-news works!</p>
+<nz-layout>
+  <nz-header>
+    <div class="logo header-container">
+      <a [routerLink]="['/components', 'demos', 'hacker-news']">
+        <img src="../../../../assets/images/hacker-news.gif">
+        Hacker News
+      </a>
+    </div>
+    <div class="menu header-container">
+      <a>new</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>past</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>comments</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>ask</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>show</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>jobs</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a>submit</a>
+    </div>
+  </nz-header>
+  <nz-content>
+    <div class="inner-content">
+      <nz-list [nzDataSource]="listOfNews" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading">
+        <ng-template #item let-item>
+          <nz-list-item>
+            <nz-list-item-meta
+              [nzTitle]="nzTitle"
+              [nzDescription]="nzDescription">
+              <ng-template #nzTitle>
+                <a [href]="item.url" target="_blank">{{ item.title }}</a>
+              </ng-template>
+              <ng-template #nzDescription>
+                <span>
+                  {{item.points}} points by {{item.author}}
+                </span>
+                <nz-divider nzType="vertical"></nz-divider>
+                <span>
+                  {{item.num_comments}} comments
+                </span>
+              </ng-template>
+            </nz-list-item-meta>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+  </nz-content>
+  <nz-footer>
+
+  </nz-footer>
+</nz-layout>

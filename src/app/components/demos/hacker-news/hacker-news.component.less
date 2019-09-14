@@ -1,0 +1,75 @@
+@import "theme";
+
+nz-layout {
+  // hack content padding
+  margin: -24px;
+
+  nz-header {
+    background-color: rgb(255, 102, 0);
+    height: 36px;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+
+    ul[nz-menu] {
+      background-color: rgb(255, 102, 0);
+      line-height: 36px;
+
+      li {
+        color: @text-color;
+      }
+    }
+
+    .header-container {
+      display: inline-block;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+      padding-left: 24px;
+
+      &.logo {
+        a {
+          color: @text-color;
+          font-size: 16px;
+          font-weight: bold;
+
+          img {
+            border: @border-width-base @white @border-style-base;
+            margin-right: 4px;
+            width: 18px;
+            height: 18px;
+            vertical-align: text-bottom;
+          }
+        }
+
+      }
+
+      &.menu {
+        font-weight: 500;
+        a {
+          color: @text-color;
+          &:hover {
+            color: @white;
+          }
+        }
+
+        nz-divider {
+          background: @text-color;
+        }
+      }
+    }
+  }
+
+  nz-content {
+    padding: 0 16px;
+    margin-top: 36px;
+
+    nz-list {
+      ::ng-deep .ant-list-item-meta-description {
+        font-size: 12px;
+      }
+    }
+  }
+}

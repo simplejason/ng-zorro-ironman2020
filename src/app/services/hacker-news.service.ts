@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IAvailableTags, IBaseStory, IResultList, IBaseStoryType, IHackerNews, Hit, IStory } from 'interfaces';
 import { forkJoin, Observable, of } from 'rxjs';
@@ -23,11 +23,11 @@ export class HackerNewsService {
    */
   getStories(page: number = 1, pageSize: number = 20, type = IBaseStoryType.TOP): Observable<IResultList> {
     return this.http.get<any>(`${this.BASE_URL}/${type}.json?print=pretty`).pipe(
-      mergeMap((ids) => forkJoin([of(ids.length), ...ids.slice((page - 1) * pageSize, page * pageSize).map(id => this.getStory(id))])),
+      mergeMap((ids) => forkJoin([ of(ids.length), ...ids.slice((page - 1) * pageSize, page * pageSize).map(id => this.getStory(id)) ])),
       map(data => {
         return {
-          total: data[0],
-          data: data.slice(1)
+          total: data[ 0 ],
+          data : data.slice(1)
         };
       })
     );
@@ -44,7 +44,11 @@ export class HackerNewsService {
    * =============== algolia.com ==================
    */
   getStoriesByAlgolia(query = '', tags = IAvailableTags.STORY): Observable<IHackerNews> {
-    return this.http.get<IHackerNews>(`${this.BASE_URL_ALGOLIA}/search?query=${query}&tags=${tags}`);
+    const params = new HttpParams().append('tags', tags);
+    if (query) {
+      params.append('query', query);
+    }
+    return this.http.get<IHackerNews>(`${this.BASE_URL_ALGOLIA}/search`, { params, responseType: 'json' });
   }
 
   getStoryByAlgolia(itemId: number): Observable<IStory> {
