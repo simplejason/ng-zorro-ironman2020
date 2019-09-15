@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { PipesModule } from '../../pipes/pipes.module';
 import { DemosRoutingModule } from './demos.routing.module';
 import { HackerNewsComponent } from './hacker-news/hacker-news.component';
 import { TaskDetailComponent } from './todo/task-detail/task-detail.component';
@@ -28,7 +29,8 @@ const MODAL_COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
-    DemosRoutingModule
+    DemosRoutingModule,
+    PipesModule
   ],
   entryComponents: [
     ...MODAL_COMPONENTS

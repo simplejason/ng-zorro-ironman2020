@@ -24,21 +24,46 @@
   </nz-header>
   <nz-content>
     <div class="inner-content">
-      <nz-list [nzDataSource]="listOfNews" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading">
+
+      <nz-list
+        [nzDataSource]="listOfNews"
+        [nzRenderItem]="item"
+        [nzItemLayout]="'vertical'"
+        [nzLoading]="loading"
+        nzSize="small">
         <ng-template #item let-item>
-          <nz-list-item>
+          <nz-list-item
+            nzNoFlex="true"
+            [nzContent]="item.story_text ? content : ''"
+            [nzActions]="[upAction, hideAction, commentAction]"
+          >
+            <ng-template #upAction><i nz-icon nzType="like" nzTheme="outline"></i> upvote</ng-template>
+            <ng-template #hideAction><i nz-icon nzType="eye-invisible" nzTheme="outline"></i> hide</ng-template>
+            <ng-template #commentAction><i nz-icon nzType="message" nzTheme="outline"></i> comment</ng-template>
+            <ng-template #content>
+              <p [innerHTML]="item.story_text"></p>
+            </ng-template>
             <nz-list-item-meta
               [nzTitle]="nzTitle"
               [nzDescription]="nzDescription">
               <ng-template #nzTitle>
-                <a [href]="item.url" target="_blank">{{ item.title }}</a>
+                <a [href]="item.url" target="_blank">{{ item.title }} </a>
+                <span class="link second-text">
+                  <ng-container *ngIf="item.url">(</ng-container>
+                  {{item.url | hostParse}}
+                  <ng-container *ngIf="item.url">)</ng-container>
+                </span>
               </ng-template>
               <ng-template #nzDescription>
                 <span>
-                  {{item.points}} points by {{item.author}}
+                  {{item.points}} points by <span class="link">{{item.author}}</span> <span class="link"> {{item.created_at | timeAgo}}</span>
                 </span>
                 <nz-divider nzType="vertical"></nz-divider>
-                <span>
+                <span class="link">
+                  hide
+                </span>
+                <nz-divider nzType="vertical"></nz-divider>
+                <span class="link">
                   {{item.num_comments}} comments
                 </span>
               </ng-template>
@@ -48,7 +73,4 @@
       </nz-list>
     </div>
   </nz-content>
-  <nz-footer>
-
-  </nz-footer>
 </nz-layout>

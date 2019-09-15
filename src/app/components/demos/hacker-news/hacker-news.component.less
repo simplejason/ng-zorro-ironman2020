@@ -67,8 +67,28 @@ nz-layout {
     margin-top: 36px;
 
     nz-list {
-      ::ng-deep .ant-list-item-meta-description {
-        font-size: 12px;
+      ::ng-deep {
+        .ant-list-item-meta-description {
+          font-size: 12px;
+        }
+        .ant-list-item-action {
+          li {
+            &:hover {
+              color: @text-color;
+            }
+          }
+        }
+      }
+
+      .link {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .second-text {
+        color: @text-color-secondary;
       }
     }
   }
