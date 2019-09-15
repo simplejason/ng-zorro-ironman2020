@@ -43,12 +43,12 @@ export class HackerNewsService {
   /**
    * =============== algolia.com ==================
    */
-  getStoriesByAlgolia(query = '', tags = IAvailableTags.STORY): Observable<IHackerNews> {
-    const params = new HttpParams().append('tags', tags);
+  getStoriesByAlgolia(query = '', page = 1, sortType: 'search' | 'search_by_date' = 'search', tags = IAvailableTags.STORY): Observable<IHackerNews> {
+    const params = new HttpParams().append('tags', tags).append('page', page.toString());
     if (query) {
       params.append('query', query);
     }
-    return this.http.get<IHackerNews>(`${this.BASE_URL_ALGOLIA}/search`, { params, responseType: 'json' });
+    return this.http.get<IHackerNews>(`${this.BASE_URL_ALGOLIA}/${sortType}`, { params, responseType: 'json' });
   }
 
   getStoryByAlgolia(itemId: number): Observable<IStory> {

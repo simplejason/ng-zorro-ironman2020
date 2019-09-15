@@ -12,11 +12,13 @@ export class HackerNewsComponent implements OnInit {
 
   currentPage = 1;
   pageSize = 20;
+  queryString = '';
+  sortType: 'search' | 'search_by_date' = 'search';
   loading = true;
   listOfNews: Hit[] = [];
 
   getStories() {
-    this.hackerNewsService.getStoriesByAlgolia().subscribe(data => {
+    this.hackerNewsService.getStoriesByAlgolia(this.queryString, this.currentPage, this.sortType).subscribe(data => {
       this.listOfNews = data.hits;
       this.loading = false;
       this.cdr.markForCheck();
