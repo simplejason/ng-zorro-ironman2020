@@ -16,13 +16,18 @@ export class HackerNewsComponent implements OnInit {
   sortType: 'search' | 'search_by_date' = 'search';
   loading = true;
   listOfNews: Hit[] = [];
+  // total news count
+  totalCount = 0;
+  totalRealCount = 0;
 
   getStories() {
-    this.hackerNewsService.getStoriesByAlgolia(this.queryString, this.currentPage, this.sortType).subscribe(data => {
+    this.loading = true;
+    this.hackerNewsService.getStoriesByAlgolia(this.queryString, this.currentPage, this.pageSize, this.sortType).subscribe(data => {
       this.listOfNews = data.hits;
+      this.totalCount = data.nbPages * this.pageSize;
+      this.totalRealCount = data.nbHits;
       this.loading = false;
       this.cdr.markForCheck();
-      console.log(this.listOfNews);
     }, (err) => {
       console.error(err);
       this.loading = false;

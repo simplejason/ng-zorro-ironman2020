@@ -73,4 +73,8 @@
       </nz-list>
     </div>
   </nz-content>
+  <nz-footer>
+    <nz-pagination [nzTotal]="totalCount" [(nzPageIndex)]="currentPage" [(nzPageSize)]="pageSize" (nzPageIndexChange)="getStories()" (nzPageSizeChange)="getStories()" [nzShowTotal]="totalTemplate" nzShowSizeChanger [nzPageSizeOptions]="[10, 20, 30, 50]"></nz-pagination>
+    <ng-template #totalTemplate let-total> Total {{ totalRealCount }} news </ng-template>
+  </nz-footer>
 </nz-layout>

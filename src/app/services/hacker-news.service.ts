@@ -41,10 +41,15 @@ export class HackerNewsService {
   }
 
   /**
-   * =============== algolia.com ==================
+   *
+   * @param query: 查询内容
+   * @param page: 当前页码
+   * @param pageSize: 每页显示数目
+   * @param sortType: 排序方式，常规或最新
+   * @param tags: 结果类型
    */
-  getStoriesByAlgolia(query = '', page = 1, sortType: 'search' | 'search_by_date' = 'search', tags = IAvailableTags.STORY): Observable<IHackerNews> {
-    const params = new HttpParams().append('tags', tags).append('page', page.toString());
+  getStoriesByAlgolia(query = '', page = 1, pageSize = 20, sortType: 'search' | 'search_by_date' = 'search', tags = IAvailableTags.STORY): Observable<IHackerNews> {
+    const params = new HttpParams().append('tags', tags).append('page', page.toString()).append('hitsPerPage', pageSize.toString());
     if (query) {
       params.append('query', query);
     }
