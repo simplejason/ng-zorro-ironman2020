@@ -5,6 +5,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { PipesModule } from '../../pipes/pipes.module';
 import { DemosRoutingModule } from './demos.routing.module';
 import { HackerNewsComponent } from './hacker-news/hacker-news.component';
+import { StoryDetailComponent } from './hacker-news/story-detail/story-detail.component';
 import { TaskDetailComponent } from './todo/task-detail/task-detail.component';
 import { TaskListComponent } from './todo/task-list/task-list.component';
 import { TodoComponent } from './todo/todo.component';
@@ -16,7 +17,8 @@ const COMPONENTS = [
 ];
 
 const MODAL_COMPONENTS = [
-  TaskDetailComponent
+  TaskDetailComponent,
+  StoryDetailComponent
 ];
 
 @NgModule({

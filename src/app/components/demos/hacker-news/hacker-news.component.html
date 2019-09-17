@@ -24,7 +24,6 @@
   </nz-header>
   <nz-content>
     <div class="inner-content">
-
       <nz-list
         [nzDataSource]="listOfNews"
         [nzRenderItem]="item"
@@ -39,7 +38,9 @@
           >
             <ng-template #upAction><i nz-icon nzType="like" nzTheme="outline"></i> upvote</ng-template>
             <ng-template #hideAction><i nz-icon nzType="eye-invisible" nzTheme="outline"></i> hide</ng-template>
-            <ng-template #commentAction><i nz-icon nzType="message" nzTheme="outline"></i> comment</ng-template>
+            <ng-template #commentAction>
+              <span (click)="showDetail(item)"><i nz-icon nzType="message" nzTheme="outline"></i> comment</span>
+            </ng-template>
             <ng-template #content>
               <p [innerHTML]="item.story_text"></p>
             </ng-template>
@@ -63,7 +64,7 @@
                   hide
                 </span>
                 <nz-divider nzType="vertical"></nz-divider>
-                <span class="link">
+                <span class="link" (click)="showDetail(item)">
                   {{item.num_comments}} comments
                 </span>
               </ng-template>

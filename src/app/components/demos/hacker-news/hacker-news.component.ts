@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Hit, IBaseStoryType, IStory } from 'interfaces';
+import { NzDrawerService } from 'ng-zorro-antd';
 import { HackerNewsService } from '../../../services/hacker-news.service';
+import { StoryDetailComponent } from './story-detail/story-detail.component';
 
 @Component({
   selector       : 'app-hacker-news',
@@ -22,7 +24,7 @@ export class HackerNewsComponent implements OnInit {
 
   getStories() {
     this.loading = true;
-    this.hackerNewsService.getStoriesByAlgolia(this.queryString, this.currentPage, this.pageSize, this.sortType).subscribe(data => {
+    this.hackerNewsService.getStoriesByAlgolia(this.queryString, this.currentPage - 1, this.pageSize, this.sortType).subscribe(data => {
       this.listOfNews = data.hits;
       this.totalCount = data.nbPages * this.pageSize;
       this.totalRealCount = data.nbHits;
@@ -35,8 +37,21 @@ export class HackerNewsComponent implements OnInit {
     });
   }
 
+  showDetail(story: Hit) {
+    this.nzDrawerService.create({
+      nzTitle        : story.title,
+      nzContent      : StoryDetailComponent,
+      nzWidth        : '100%',
+      nzPlacement    : 'right',
+      nzContentParams: {
+        storyId: story.objectID
+      }
+    });
+  }
+
   constructor(
     private hackerNewsService: HackerNewsService,
+    private nzDrawerService: NzDrawerService,
     private cdr: ChangeDetectorRef
   ) {
   }
