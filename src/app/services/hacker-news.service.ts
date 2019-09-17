@@ -56,7 +56,7 @@ export class HackerNewsService {
     return this.http.get<IHackerNews>(`${this.BASE_URL_ALGOLIA}/${sortType}`, { params, responseType: 'json' });
   }
 
-  getStoryByAlgolia(itemId: number): Observable<IStory> {
+  getStoryByAlgolia(itemId: number | string): Observable<IStory> {
     return this.http.get<IStory>(`${this.BASE_URL_ALGOLIA}/items/${itemId}`);
   }
 

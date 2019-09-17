@@ -1,0 +1,23 @@
+<nz-skeleton [nzLoading]="loading" [nzActive]="true">
+  <div class="comment-container">
+    <ng-template #commentTemplateRef let-comment="comment">
+      <nz-comment [nzAuthor]="comment.author" nzDatetime="{{comment.created_at | timeAgo}}">
+        <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="comment?.avatar || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'"></nz-avatar>
+        <nz-comment-content>
+          <p [innerHTML]="comment.text"></p>
+        </nz-comment-content>
+        <nz-comment-action>Reply to</nz-comment-action>
+        <ng-container *ngIf="comment.children && comment.children.length">
+          <ng-template ngFor let-child [ngForOf]="comment.children">
+            <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: child }">
+            </ng-template>
+          </ng-template>
+        </ng-container>
+      </nz-comment>
+    </ng-template>
+
+    <ng-container *ngFor="let item of listOfComments">
+      <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: item }"> </ng-template>
+    </ng-container>
+  </div>
+</nz-skeleton>
