@@ -1,6 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Hit, IBaseStoryType, IStory } from 'interfaces';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Hit} from 'interfaces';
 import { NzDrawerService } from 'ng-zorro-antd';
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { HackerNewsService } from '../../../services/hacker-news.service';
 import { StoryDetailComponent } from './story-detail/story-detail.component';
 
@@ -10,10 +13,10 @@ import { StoryDetailComponent } from './story-detail/story-detail.component';
   styleUrls      : [ './hacker-news.component.less' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HackerNewsComponent implements OnInit {
+export class HackerNewsComponent implements OnInit, OnDestroy {
 
   currentPage = 1;
-  pageSize = 20;
+  pageSize = 5;
   queryString = '';
   sortType: 'search' | 'search_by_date' = 'search';
   loading = true;
@@ -22,8 +25,15 @@ export class HackerNewsComponent implements OnInit {
   totalCount = 0;
   totalRealCount = 0;
 
+  searchControl = new FormControl();
+  destroy$ = new Subject();
+
+  options = ['APPLE', 'HUAWEI', 'SONY', 'XIAOMI'];
+  filteredOptions = [];
+
   getStories() {
     this.loading = true;
+    this.cdr.markForCheck();
     this.hackerNewsService.getStoriesByAlgolia(this.queryString, this.currentPage - 1, this.pageSize, this.sortType).subscribe(data => {
       this.listOfNews = data.hits;
       this.totalCount = data.nbPages * this.pageSize;
@@ -57,11 +67,22 @@ export class HackerNewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.hackerNewsService.getStories(this.currentPage, this.pageSize, IBaseStoryType.BEST).subscribe(data => {
-    //   console.log(data, 'offical data');
-    // });
-    //
     this.getStories();
+
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      takeUntil(this.destroy$)
+    ).subscribe(query => {
+      this.queryString = query || '';
+      // to list autocomplete options
+      this.filteredOptions = this.options.filter(option => option.toLowerCase().indexOf(query.toLowerCase()) === 0);
+      this.getStories();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

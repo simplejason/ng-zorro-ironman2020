@@ -7,6 +7,27 @@
       </a>
     </div>
     <div class="menu header-container">
+      <div class="search-form">
+        <nz-input-group [nzSuffix]="suffixTemplate" [nzPrefix]="prefixTemplate">
+          <input type="text" nz-input placeholder="Search stories by title, url or author" [formControl]="searchControl" [nzAutocomplete]="auto" />
+        </nz-input-group>
+        <ng-template #prefixTemplate>
+          <i nz-icon nzType="search"></i>
+        </ng-template>
+        <ng-template #suffixTemplate>
+          <i
+          nz-icon
+          class="ant-input-clear-icon"
+          nzType="close-circle"
+          *ngIf="queryString"
+          (click)="searchControl.setValue('')"></i>
+        </ng-template>
+        <nz-autocomplete #auto>
+          <nz-auto-option *ngFor="let option of filteredOptions" [nzValue]="option">
+            {{ option }}
+          </nz-auto-option>
+        </nz-autocomplete>
+      </div>
       <a>new</a>
       <nz-divider nzType="vertical"></nz-divider>
       <a>past</a>
