@@ -48,8 +48,10 @@ nz-layout {
 
       &.menu {
         font-weight: 500;
-        a {
+
+        & > a {
           color: @text-color;
+
           &:hover {
             color: @white;
           }
@@ -57,6 +59,23 @@ nz-layout {
 
         nz-divider {
           background: @text-color;
+        }
+      }
+
+      .search-form {
+        width: 400px;
+        display: inline-block;
+        padding-right: 16px;
+
+        input {
+          &:hover, &:focus {
+            box-shadow: none;
+            border-color: rgb(255, 102, 0);
+          }
+
+          i[nz-icon] {
+            color: @highlight-color;
+          }
         }
       }
     }
@@ -71,6 +90,7 @@ nz-layout {
         .ant-list-item-meta-description {
           font-size: 12px;
         }
+
         .ant-list-item-action {
           li {
             &:hover {
@@ -82,6 +102,7 @@ nz-layout {
 
       .link {
         cursor: pointer;
+
         &:hover {
           text-decoration: underline;
         }

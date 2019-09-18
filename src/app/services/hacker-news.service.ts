@@ -49,10 +49,8 @@ export class HackerNewsService {
    * @param tags: 结果类型
    */
   getStoriesByAlgolia(query = '', page = 1, pageSize = 20, sortType: 'search' | 'search_by_date' = 'search', tags = IAvailableTags.STORY): Observable<IHackerNews> {
-    const params = new HttpParams().append('tags', tags).append('page', page.toString()).append('hitsPerPage', pageSize.toString());
-    if (query) {
-      params.append('query', query);
-    }
+    console.log(query);
+    const params = new HttpParams().append('tags', tags).append('page', page.toString()).append('hitsPerPage', pageSize.toString()).append('query', query);
     return this.http.get<IHackerNews>(`${this.BASE_URL_ALGOLIA}/${sortType}`, { params, responseType: 'json' });
   }
 
