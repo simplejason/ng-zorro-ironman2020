@@ -50,6 +50,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
                 "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/images/",
+                "output": "/assets/"
               }
             ],
             "styles": [
@@ -57,7 +62,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/styles"
+                "src/styles",
+                "src/product-configurations/styles/dark"
               ]
             },
             "scripts": []
@@ -86,6 +92,28 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "light-theme": {
+              "outputPath": "dist/light",
+              "baseHref": "/light/",
+              "deployUrl": "/light/",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/styles",
+                  "src/product-configurations/styles/light"
+                ]
+              }
+            },
+            "dark-theme": {
+              "outputPath": "dist/dark",
+              "baseHref": "/dark/",
+              "deployUrl": "/dark/",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/styles",
+                  "src/product-configurations/styles/dark"
+                ]
+              }
             }
           }
         },

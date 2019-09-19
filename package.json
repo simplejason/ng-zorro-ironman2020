@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:light": "ng build --project=ng-zorro-ironman2020 --configuration=light-theme",
+    "build:dark": "ng build --project=ng-zorro-ironman2020 --configuration=dark-theme"
   },
   "private": true,
   "dependencies": {
