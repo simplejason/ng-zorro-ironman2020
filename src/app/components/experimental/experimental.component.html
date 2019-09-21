@@ -1,0 +1,18 @@
+<div
+  class="box"
+  nz-resizable
+  [nzMaxWidth]="600"
+  [nzMinWidth]="80"
+  [nzMaxHeight]="200"
+  [nzMinHeight]="80"
+  [style.height.px]="height"
+  [style.width.px]="width"
+  (nzResize)="onResize($event)"
+>
+  <nz-resize-handle nzDirection="right">
+    <div class="right-wrap">
+      <i class="right" nz-icon nzType="more" nzTheme="outline"></i>
+    </div>
+  </nz-resize-handle>
+  content
+</div>
