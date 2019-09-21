@@ -4,6 +4,7 @@ import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { DrawerComponent } from './drawer/drawer.component';
+import { ExperimentalComponent } from './experimental/experimental.component';
 import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path     : 'drawer',
         component: DrawerComponent
+      },
+      {
+        path     : 'experimental',
+        component: ExperimentalComponent
       },
       {
         path        : 'demos',

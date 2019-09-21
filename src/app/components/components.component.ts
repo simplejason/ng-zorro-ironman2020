@@ -61,6 +61,12 @@ export class ComponentsComponent implements OnInit {
           icon : 'read'
         }
       ]
+    },
+    {
+      level: 1,
+      title: '實驗性元件',
+      icon : 'experiment',
+      path : [ '/components', 'experimental' ],
     }
   ];
 

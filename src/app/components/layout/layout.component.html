@@ -1,5 +1,19 @@
 <nz-layout>
-  <nz-sider nzCollapsible [(nzCollapsed)]="collapsed" [nzWidth]="width" [nzTrigger]="triggerTpl" [nzTheme]="theme">
+  <nz-sider
+    nzCollapsible
+    [(nzCollapsed)]="collapsed"
+    [nzWidth]="width"
+    [nzTrigger]="triggerTpl"
+    [nzTheme]="theme"
+    nz-resizable
+    [nzMaxWidth]="400"
+    [nzMinWidth]="200"
+    (nzResize)="onSideResize($event)">
+    <!--handle-->
+    <nz-resize-handle nzDirection="right">
+      <div class="sider-resize-line"></div>
+    </nz-resize-handle>
+    <!--content-->
     <div class="logo"></div>
     <ul nz-menu [nzTheme]="theme" nzMode="inline" [nzInlineCollapsed]="collapsed">
       <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>

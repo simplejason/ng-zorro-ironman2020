@@ -11,4 +11,12 @@ export class LayoutComponent {
   @Input() collapsed = false;
   @Input() menus: IMenu[] = [];
   @Input() width = 200;
+
+  id = -1;
+  onSideResize({ width }: { width: number }): void {
+    cancelAnimationFrame(this.id);
+    this.id = requestAnimationFrame(() => {
+      this.width = width;
+    });
+  }
 }
