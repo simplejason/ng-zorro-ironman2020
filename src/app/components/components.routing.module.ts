@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AnimationsComponent } from './animations/animations.component';
 import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path     : 'experimental',
         component: ExperimentalComponent
+      },
+      {
+        path     : 'animations',
+        component: AnimationsComponent
       },
       {
         path        : 'demos',

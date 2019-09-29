@@ -5,6 +5,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
+import { AnimationsComponent } from './animations/animations.component';
 import { ButtonComponent } from './button/button.component';
 import { ComponentsComponent } from './components.component';
 import { ComponentsRoutingModule } from './components.routing.module';
@@ -25,7 +26,8 @@ const COMPONENTS = [
   TableComponent,
   DatePickerComponent,
   DrawerComponent,
-  ExperimentalComponent
+  ExperimentalComponent,
+  AnimationsComponent
 ];
 
 const CHILD_COMPONENTS = [

@@ -1,0 +1,34 @@
+<div nz-row>
+  <div nz-col nzSpan="4">
+    <div class="fade-header" (click)="isCollapseActive=!isCollapseActive">
+      <i nz-icon [nzType]="isCollapseActive ? 'down' : 'up'" nzTheme="outline"></i> Collapsed Header
+    </div>
+    <div class="content" [@collapseMotion]="isCollapseActive ? 'expanded' : 'hidden' ">
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+    </div>
+  </div>
+  <div nz-col nzSpan="4" nzOffset="1">
+    <button nz-button nzType="primary" (click)="isFadeActive=!isFadeActive">
+      fadeMotion
+    </button>
+    <div class="content" @fadeMotion *ngIf="isFadeActive">
+      <p>fade content</p>
+      <p>fade content</p>
+    </div>
+  </div>
+  <div nz-col nzSpan="4">
+    <button nz-button nzType="primary" (click)="isMoveActive=!isMoveActive">
+      moveUpMotion
+    </button>
+    <div class="content" [@moveUpMotion]="isMoveActive ? 'enter' : 'leave' " *ngIf="isMoveActive">
+      <p>Move here from up position.</p>
+    </div>
+  </div>
+</div>
